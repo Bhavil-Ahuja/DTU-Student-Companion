@@ -1,0 +1,174 @@
+<%- include("../partials/header") -%>
+    <div class="mx-4 my-12">
+        <h1 class="font-semibold font-sans text-2xl mx-14 text-center">Batch <%= batch %>
+        </h1>
+        <div class="my-12">
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table class="min-w-full">
+                                <thead class="bg-white border-b">
+                                    <tr>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            #
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            8-9
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            9-10
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            10-11
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            11-12
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            12-1
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            1-2
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            2-3
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            3-4
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            4-5
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                            5-6
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Monday
+                                        </td>
+                                        <% Day.Monday.forEach(monday => { %>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <%= monday %>
+                                        </td>
+                                        <% }) %>
+                                    </tr>
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Tuesday</td>
+                                            <% Day.Tuesday.forEach(tuesday => { %>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <%= tuesday %>
+                                        </td>
+                                        <% }) %>
+                                    </tr>
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Wednesday</td>
+                                            <% Day.Wednesday.forEach(wednesday => { %>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <%= wednesday %>
+                                        </td>
+                                        <% }) %>
+                                    </tr>
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Thursday</td>
+                                            <% Day.Thursday.forEach(thursday => { %>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <%= thursday %>
+                                        </td>
+                                        <% }) %>
+                                    </tr>
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Friday
+                                        </td>
+                                        <% Day.Friday.forEach(friday => { %>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <%= friday %>
+                                        </td>
+                                        <% }) %>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="hide-edit-form">
+                                <button class="close-button" style="float: right;">X</button>
+                                <form action="/academic/time-table/<%= batch %>/edit" method="post">
+
+                                    <div class="form-group">
+                                        <select name="day" class="form-control form-control-lg"
+                                            style="width: 500px; margin: 20px auto;" required>
+                                            <option style="text-align: center;">Monday</option>
+                                            <option style="text-align: center;">Tuesday</option>
+                                            <option style="text-align: center;">Wednesday</option>
+                                            <option style="text-align: center;">Thursday</option>
+                                            <option style="text-align: center;">Friday</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="slot" class="form-control form-control-lg"
+                                            style="margin: 20px auto; width: 500px;" required>
+                                            <option style="text-align: center;">8-9</option>
+                                            <option style="text-align: center;">9-10</option>
+                                            <option style="text-align: center;">10-11</option>
+                                            <option style="text-align: center;">11-12</option>
+                                            <option style="text-align: center;">12-1</option>
+                                            <option style="text-align: center;">1-2</option>
+                                            <option style="text-align: center;">2-3</option>
+                                            <option style="text-align: center;">3-4</option>
+                                            <option style="text-align: center;">4-5</option>
+                                            <option style="text-align: center;">5-6</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input name="subject" type="text" class="form-control" id="subject"
+                                                placeholder="Enter subject" style="margin: 20px auto; width: 500px;" required>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button
+                                            class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                            <i class="fa-solid fa-pen"></i>
+                                            <span class="mx-2">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="show-form mt-4">
+                <button
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                    <i class="fa-solid fa-pen"></i>
+                    <span class="mx-2">Edit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-white text-center lg:text-left fixed w-full bottom-0">
+        <div class="text-black text-center p-4 font-mono">
+            Bhavil Ahuja © 2022 Copyright
+        </div>
+    </footer>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(".show-form").click(() => {
+            $("#hide-edit-form").show();
+            $(".show-form").hide();
+            $("footer").removeClass("fixed");
+        })
+
+        $(".close-button").click(() => {
+            $("#hide-edit-form").hide();
+            $(".show-form").show();
+            $("footer").addClass("fixed");
+        })
+    </script>
+    </body>
+
+    </html>

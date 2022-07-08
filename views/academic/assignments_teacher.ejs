@@ -1,0 +1,70 @@
+<%- include("../partials/header") -%>
+    <div class="mx-4 my-12">
+        <div class="ass_upload">
+            <button class="close-button" style="float: right;">X</button>
+            <form action="/academic/assignment/upload" enctype="multipart/form-data" method="post">
+                <input
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                    type="file" name="file">
+                <select name="batch"
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded inline-flex items-center">
+                    <option value="Batch1">Batch1</option>
+                    <option value="Batch2">Batch2</option>
+                </select>
+                <button
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded inline-flex items-center"
+                    type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="show-form mt-4">
+            <button
+                class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fa-solid fa-pen"></i>
+                <span class="mx-2">Add Assignment</span>
+            </button>
+        </div>
+        <hr style="margin: 15px 0;">
+        <h1 class="font-semibold font-sans text-xl mx-14 text-center">Assignments uploaded by you</h1>
+        <% assignments.forEach(assignment=> { %>
+            <h1 class="font-semibold font-sans text-xl">Batch <%=assignment.batch%>
+            </h1>
+            <% assignment.filenames.forEach(file=> { %>
+                <form action="/academic/assignment/download/<%=file%>" method="post">
+                    <input type="submit" value="Download <%=file%>">
+                </form>
+                <% }) %>
+                    <% }) %>
+                        <hr style="margin: 15px 0;">
+                        <h1 class="font-semibold font-sans text-xl mx-14 text-center">Assignments uploaded by Students
+                        </h1>
+                        <% assignments.forEach(assignment=> { %>
+                            <% assignment.students.forEach(student=> { %>
+                                <h1 class="font-semibold font-sans">
+                                    <%=student.name%>
+                                </h1>
+                                <form action="/academic/assignment/download/<%=student.filesUploaded%>" method="post">
+                                    <input type="submit" value="Download <%=student.filesUploaded%>">
+                                </form>
+                                <% }) %>
+                                    <% }) %>
+    </div>
+    <footer class="bg-white text-center lg:text-left w-full fixed bottom-0">
+        <div class="text-black text-center p-4 font-mono">
+            Bhavil Ahuja © 2022 Copyright
+        </div>
+    </footer>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(".show-form").on('click', () => {
+            $(".show-form").hide();
+            $(".ass_upload").show();
+        })
+
+        $(".close-button").on('click', () => {
+            $(".show-form").show();
+            $(".ass_upload").hide();
+        })
+    </script>
+    </body>
+
+    </html>

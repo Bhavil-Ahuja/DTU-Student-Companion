@@ -1,0 +1,94 @@
+<%- include("../partials/header") -%>
+    <div>
+        <!-- component -->
+        <div class="flex items-center justify-center" style="margin-bottom: 75px;margin-top: 50px;">
+
+            <div class="">
+                <div class="bg-white shadow-xl rounded-lg py-3 px-10">
+                    <div class="photo-wrapper p-2">
+                        <img class="w-32 h-32 rounded-full mx-auto" src="/Images/profile_picture.jpg" alt="John Doe">
+                    </div>
+                    <div class="p-2">
+                        <h3 class="text-center text-xl text-gray-900 font-medium leading-8">
+                            <%= name %>
+                        </h3>
+                        <!-- <div class="text-center text-gray-400 text-xs font-semibold my-3">
+                            <div class="flex justify-between">
+                                <div class="mr-0">Role: NA</div>
+                                <div><a class="hover:underline" href="#">Choose Role</a></div>
+                            </div>
+                        </div> -->
+                        <div class="my-3 text-gray-500 font-semibold text-center">
+                            <form action="/profile/edit" method="post">
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2">Role</label>
+                                    <select class="w-full text-center" name="role" disabled>
+                                        <% if (role==="Student" ) { %>
+                                            <option value="Student" selected>Student</option>
+                                            <option value="Teacher">Teacher</option>
+                                            <% } else { %>
+                                                <option value="Student">Student</option>
+                                                <option value="Teacher" selected>Teacher</option>
+                                                <% } %>
+                                    </select>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2">Email</label>
+                                    <input class="edit-this text-center" name="email" value="<%= email %>" type="text"
+                                        readonly>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2">Roll No</label>
+                                    <input class="edit-this text-center" type="text" name="roll_no"
+                                        value="<%= roll_no %>" readonly>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2">Year</label>
+                                    <input class="edit-this text-center" name="year" type="number" value="<%= year %>"
+                                        readonly>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2">Branch</label>
+                                    <input class="edit-this text-center" type="text" name="branch" value="<%= branch %>"
+                                        readonly>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <label class="mr-2" for="rollno">Batch</label>
+                                    <input class="edit-this text-center" type="text" name="batch" value="<%= batch %>"
+                                        readonly>
+                                </div>
+                                <button id="hide" type="submit">Update</button>
+                            </form>
+                        </div>
+                        <div class="text-center my-3">
+                            <a class="edit text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
+                                href="#">Edit Profile</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="bg-white text-center lg:text-left w-full fixed bottom-0">
+        <div class="text-black text-center p-4 font-mono">
+            Bhavil Ahuja © 2022 Copyright
+        </div>
+    </footer>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $("footer").removeClass("fixed");
+        $(".edit").on('click', () => {
+            $("select").removeAttr("disabled");
+            const x = $(".edit-this");
+            for (var i = 0; i < x.length; i++) {
+                x[i].removeAttribute("readonly");
+            }
+            $(".edit").hide();
+            $("#hide").show();
+        })
+    </script>
+    </body>
+
+    </html>

@@ -1,0 +1,13 @@
+#hide-edit-form {
+    display: none;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.form-control {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}

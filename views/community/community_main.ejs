@@ -1,0 +1,81 @@
+<%- include("../partials/header") -%>
+    <div class="mx-4 mt-12 mb-20">
+        <h1 class="font-semibold font-sans text-2xl mx-14 text-center">Community Page</h1>
+        <div class="float-right border-2 border-black rounded-lg mr-12">
+            <button
+                class=" bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                onclick="location.href='/community/live-chat'">
+                <i class="fa-brands fa-rocketchat"></i>
+                <span>Live Chat</span>
+            </button>
+        </div>
+        <div class="threads clear-right">
+            <% results.forEach(res=> { %>
+                <div class="bg-white thread mx-12 mt-12 p-2 border-2 border-black rounded-lg">
+                    <h1 class="font-medium text-xl">
+                        <%= res.sender %>
+                    </h1>
+                    <% if (res.sender === user) { %>
+                        <form action="/community/delete" method="post">
+                            <input type="hidden" name="post_id" value="<%= res._id %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                    <p class="my-2">
+                        <%= res.message %>
+                    </p>
+                    <button class="add-comment hover:underline float-right mr-4" href=""><span><i
+                                class="fa-solid fa-comment"></i> Add
+                            Comment</span></button>
+                    <p class="mt-10 mb-5"><i class="fa-solid fa-comments"></i> Comments</p>
+                    <div class="hidecommentform">
+                        <button class="my-auto close-comment" style="margin-left: 7px; float: right;">X</button>
+                        <form class="comment-form" action="/community/post-comment" method="post">
+                            <input type="text" name="reply" placeholder="Add Comment"
+                                style="width: 90%; padding: 10px;">
+                            <input type="hidden" name="post_id" value="<%= res._id %>">
+                            <button type="submit">Post Comment</button>
+                        </form>
+                    </div>
+                    <% res.replies.forEach(reply=> { %>
+                        <div class="ml-6">
+                            <h3 class="font-semibold text-lg">
+                                <%= reply.replier %>
+                            </h3>
+                            <p>
+                                <%= reply.reply %>
+                            </p>
+                        </div>
+                        <% }) %>
+                </div>
+                <% }) %>
+        </div>
+        <div class="mx-12 mt-12 border-2 border-black rounded-lg hideform">
+            <div class="center hideform">
+                <button id="close" style="float: right;">X</button>
+                <form method="post" action="/community/post">
+                    <h1 class="text-3xl">Post</h1>
+                    <input class="input" name="message" placeholder="Your message here">
+                    <br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="add mx-14 mt-4">
+            <button id="add-new-post"
+                class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span class="mx-2">Add new Post</span>
+            </button>
+        </div>
+    </div>
+    <footer class="bg-white text-center lg:text-left w-full fixed bottom-0">
+        <div class="text-black text-center p-4 font-mono">
+            Bhavil Ahuja © 2022 Copyright
+        </div>
+    </footer>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/JS/community.js"></script>
+    </body>
+
+    </html>
